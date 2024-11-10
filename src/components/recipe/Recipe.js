@@ -39,6 +39,11 @@ const Recipe = ({setDeleted}) => {
     }, [])
   return (
     <div className='recipe-details'>
+      {!recipe && (
+        <div>
+          Recipe not found 😕
+        </div>
+      )}
       {recipe && (
         <article>
           <h2>{recipe.name}</h2>

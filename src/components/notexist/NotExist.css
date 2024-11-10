@@ -1,0 +1,18 @@
+.not-exist h4 {
+    color: #258e7e;
+    margin-bottom: 10px;
+    margin-top: 16px;
+  }
+  
+  .not-exist p {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .go-home {
+    text-decoration: none;
+  }
+  
+  .go-home:hover {
+    color: #258e7e;
+  }
