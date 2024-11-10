@@ -1,23 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+import api from './api/axiosConfig';
+import {useState, useEffect} from 'react';
+import Layout from './components/Layout';
+import {Routes, Route} from 'react-router-dom';
+import Home from './components/home/Home';
+import Recipe from './components/recipe/Recipe';
+import Create from './components/create/Create';
+import NotExist from './components/notexist/NotExist';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
+
+  const [recipes, setRecipes] = useState();
+  const [deleted, setDeleted] = useState();
+
+  const getRecipes = async() => {
+
+    try{
+      const response = await api.get("api/v1/recipes");
+      console.log(response.data);
+      setRecipes(response.data);
+    } catch(err){
+      console.log(err);
+    }
+
+  }
+
+  useEffect(() => {
+    getRecipes();
+  }, [deleted])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route path="/" element={<Home recipes={recipes}/>}/>
+        </Route>
+        <Route path="/create" element={<Create/>}/>
+        <Route path="/recipes/:id" element={<Recipe setDeleted={setDeleted}/>}/>
+        <Route path="*" element={<NotExist/>}/>
+      </Routes>
+
     </div>
   );
 }

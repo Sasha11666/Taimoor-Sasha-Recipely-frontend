@@ -1,0 +1,22 @@
+.recipes {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+.recipe-preview {
+    padding: 10px 16px;
+    margin: 20px 0;
+    border-bottom: 1px solid #464444;
+  }
+  .recipe-preview:hover {
+    box-shadow: 1px 3px 8px rgba(109, 106, 106, 0.5);
+  }
+  .recipe-preview h2 {
+    font-size: 20px;
+    color: #258e7e;
+    margin-bottom: 8px;
+  }
+  
+  .recipe-preview a {
+    text-decoration: none;
+  }
