@@ -38,8 +38,8 @@ function App() {
         <Route path="/" element={<Layout/>}>
           <Route path="/" element={<Home recipes={recipes}/>}/>
         </Route>
-        <Route path="/create" element={<Create/>}/>
-        <Route path="/recipes/:id" element={<Recipe setDeleted={setDeleted}/>}/>
+        <Route path="/create" element={<Create deleted={deleted} setDeleted={setDeleted}/>}/>
+        <Route path="/recipes/:id" element={<Recipe deleted={deleted} setDeleted={setDeleted}/>}/>
         <Route path="*" element={<NotExist/>}/>
       </Routes>
 

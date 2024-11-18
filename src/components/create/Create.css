@@ -1,0 +1,33 @@
+.create {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .create label {
+    text-align: left;
+    display: block;
+  }
+  .create h2 {
+    font-size: 20px;
+    color: #258e7e;
+    margin-top: 32px;
+    margin-bottom: 30px;
+  }
+  .create input,
+  .create textarea {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 1px solid #a8a4a4;
+    box-sizing: border-box;
+    display: block;
+    background-color: transparent;
+  }
+  .create button {
+    background: #258e7e;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+
+  }

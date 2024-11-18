@@ -5,7 +5,7 @@ import api from '../../api/axiosConfig';
 import './Recipe.css';
 import { useNavigate } from 'react-router-dom';
 
-const Recipe = ({setDeleted}) => {
+const Recipe = ({deleted, setDeleted}) => {
     const { id } = useParams();
     const [recipe, setRecipe] = useState();
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Recipe = ({setDeleted}) => {
       try{
         const response = await api.delete("api/v1/recipes/" + id);
         console.log(response.data);
-        setDeleted(true);
+        setDeleted(!deleted);
         navigate('/');
       } catch(err){
         console.log(err);
