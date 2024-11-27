@@ -8,6 +8,9 @@ import Recipe from './components/recipe/Recipe';
 import Create from './components/create/Create';
 import NotExist from './components/notexist/NotExist';
 import Navbar from './components/navbar/Navbar';
+import Login from './components/login/Login';
+import Register from './components/register/Register';
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
 
@@ -35,11 +38,21 @@ function App() {
       <Navbar/>
       
       <Routes>
-        <Route path="/" element={<Layout/>}>
+        {/* <Route path="/" element={<Layout/>}>
           <Route path="/" element={<Home recipes={recipes}/>}/>
-        </Route>
-        <Route path="/create" element={<Create deleted={deleted} setDeleted={setDeleted}/>}/>
-        <Route path="/recipes/:id" element={<Recipe deleted={deleted} setDeleted={setDeleted}/>}/>
+        </Route> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+        element={
+          <ProtectedRoute isAllowed={Boolean(localStorage.getItem("user"))} />
+         }
+        >
+          <Route path="/" element={<Home recipes={recipes}/>}/>
+          <Route path="/create" element={<Create deleted={deleted} setDeleted={setDeleted}/>}/>
+          <Route path="/recipes/:id" element={<Recipe deleted={deleted} setDeleted={setDeleted}/>}/>
+      </Route>
+        
         <Route path="*" element={<NotExist/>}/>
       </Routes>
 
