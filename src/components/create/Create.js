@@ -15,11 +15,7 @@ const Create = ({deleted, setDeleted}) => {
       e.preventDefault();
       const newRecipe = { name, description, ingredients};
       const response = await api.post("api/v1/recipes", {
-        userId: "670d815b4927ceb2950aa4e3",
-        firstName: "Tom",
-        lastName: "Green",
-        userPicturePath: "",
-        picturePath: "",
+        userId: localStorage.getItem("user").replace(/"/g, ''),
         ...newRecipe,
       });
       console.log(response.data);
