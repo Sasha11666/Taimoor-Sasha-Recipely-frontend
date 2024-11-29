@@ -19,32 +19,7 @@ function Register() {
 //   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-//   const handleLogin = async () => {
-//     if (!email || !password) {
-//       setError("Заполните все поля");
-//       return;
-//     }
-//     setDisable(true);
-//     loginUser(email, password)
-//       .then((data) => {
-//         setUser(data);
-//         localStorage.setItem("user", JSON.stringify(data));
-//         dispatch(setCurrentAlbumName("main"));
-//         navigate("/");
-//       })
-//       .then(() => {
-//         getToken(email, password).then((data) => {
-//           localStorage.setItem("token", JSON.stringify(data));
-//           localStorage.setItem("refreshToken", JSON.stringify(data.refresh));
-//         });
-//       })
-//       .catch((err) => {
-//         setError(err.message);
-//       })
-//       .finally(() => {
-//         setDisable(false);
-//       });
-//   };
+
 
   const handleRegister = async () => {
     if (!firstName || !lastName || !userName || !password || !repeatPassword) {
@@ -74,13 +49,14 @@ function Register() {
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
   useEffect(() => {
     setError(null);
+    localStorage.removeItem("user");
   }, [ userName, password, repeatPassword]);
 
   return (
-    <div>
-            <Link tp="./login">Go to Login Page</Link>
-          
-            <div>
+    <div className="register-page">
+          <h1>Recipely🥑</h1>  
+          <div>
+            <div className="register">
             <input
                 type="text"
                 name="firstName"
@@ -128,16 +104,20 @@ function Register() {
               />
             </div>
             {error && <div>{error}</div>}
-            <div>
+            <div className="button-block">
               {disable ? (
                 <p style={{ color: "#000" }}>Registering user...</p>
               ) : (
                 <button onClick={handleRegister}>
-                  Register
+                  Sign up
                 </button>
               )}
             </div>
-          
+            </div>
+            <div className="link">
+                <Link to="/login">Already have an account? Sign in</Link>
+            </div>
+            
        </div>
   );
 }

@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react';
 import api from '../../api/axiosConfig';
 import './Recipe.css';
 import { useNavigate } from 'react-router-dom';
+import  Navbar  from "../navbar/Navbar";
 
 const Recipe = ({deleted, setDeleted}) => {
     const { id } = useParams();
@@ -46,6 +47,7 @@ const Recipe = ({deleted, setDeleted}) => {
       )}
       {recipe && (
         <article>
+          <Navbar/>
           <h2>{recipe.name}</h2>
           <p><i>Created by {recipe.firstName} {recipe.lastName}</i></p>
           <div className='ingredients'>

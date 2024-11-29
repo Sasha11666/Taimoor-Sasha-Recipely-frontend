@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./Create.css";
 import api from '../../api/axiosConfig';
+import  Navbar  from "../navbar/Navbar";
 
 
 const Create = ({deleted, setDeleted}) => {
@@ -15,7 +16,7 @@ const Create = ({deleted, setDeleted}) => {
       e.preventDefault();
       const newRecipe = { name, description, ingredients};
       const response = await api.post("api/v1/recipes", {
-        userId: localStorage.getItem("user").replace(/"/g, ''),
+        userId: localStorage.getItem("userId").replace(/"/g, ''),
         ...newRecipe,
       });
       console.log(response.data);
@@ -31,6 +32,7 @@ const Create = ({deleted, setDeleted}) => {
 
   return (
     <div className="create">
+      <Navbar/>
     <h2>Create a recipe</h2>
     <form onSubmit={addRecipe}>
       <label>Name:</label>

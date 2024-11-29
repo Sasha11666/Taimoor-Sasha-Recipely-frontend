@@ -7,7 +7,6 @@ import Home from './components/home/Home';
 import Recipe from './components/recipe/Recipe';
 import Create from './components/create/Create';
 import NotExist from './components/notexist/NotExist';
-import Navbar from './components/navbar/Navbar';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -35,7 +34,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar/>
+      
       
       <Routes>
         {/* <Route path="/" element={<Layout/>}>

@@ -16,32 +16,7 @@ function Login() {
 //   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-//   const handleLogin = async () => {
-//     if (!email || !password) {
-//       setError("Заполните все поля");
-//       return;
-//     }
-//     setDisable(true);
-//     loginUser(email, password)
-//       .then((data) => {
-//         setUser(data);
-//         localStorage.setItem("user", JSON.stringify(data));
-//         dispatch(setCurrentAlbumName("main"));
-//         navigate("/");
-//       })
-//       .then(() => {
-//         getToken(email, password).then((data) => {
-//           localStorage.setItem("token", JSON.stringify(data));
-//           localStorage.setItem("refreshToken", JSON.stringify(data.refresh));
-//         });
-//       })
-//       .catch((err) => {
-//         setError(err.message);
-//       })
-//       .finally(() => {
-//         setDisable(false);
-//       });
-//   };
+//  
 
   const handleLogin = async () => {
     if (!userName || !password) {
@@ -58,7 +33,8 @@ function Login() {
         console.log(response.data);
         setDisable(false);
         if(response.status == 200) {
-            localStorage.setItem("user", JSON.stringify(response.data));
+            localStorage.setItem("userId", JSON.stringify(response.data.id));
+            // localStorage.setItem("userFirstName", JSON.stringify(response.data.name));
             navigate('/');
         } else {
             setError(response);
@@ -73,14 +49,15 @@ function Login() {
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
   useEffect(() => {
     setError(null);
+    localStorage.removeItem("user");
   }, [ userName, password]);
 
   return (
-    <div>
-            <Link tp="./register">Go to Register Page</Link>
-          
-            <div>
-            
+    <div className="login-page">
+        
+         <h1>Recipely🥑</h1>
+         <div>
+            <div className="login">
               <input
                 type="text"
                 name="userName"
@@ -100,8 +77,8 @@ function Login() {
                 }}
               />
             </div>
-            {error && <div>{error}</div>}
-            <div>
+            {error && <div className="error">{error}</div>}
+            <div className="button-block">
               {disable ? (
                 <p style={{ color: "#000" }}>Signing in...</p>
               ) : (
@@ -110,7 +87,10 @@ function Login() {
                 </button>
               )}
             </div>
-          
+          </div>
+            <div className="link">
+                <Link to="/register">Don't have an account? Sign up</Link>
+            </div>
        </div>
   );
 }
