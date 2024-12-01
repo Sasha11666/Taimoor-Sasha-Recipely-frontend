@@ -15,7 +15,6 @@ const Recipe = ({deleted, setDeleted}) => {
   
       try{
         const response = await api.get("api/v1/recipes/" + id);
-        console.log(response.data);
         setRecipe(response.data);
       } catch(err){
         console.log(err);
@@ -26,7 +25,6 @@ const Recipe = ({deleted, setDeleted}) => {
     const deleteRecipe = async() => {
       try{
         const response = await api.delete("api/v1/recipes/" + id);
-        console.log(response.data);
         setDeleted(!deleted);
         navigate('/');
       } catch(err){
@@ -38,6 +36,7 @@ const Recipe = ({deleted, setDeleted}) => {
     useEffect(() => {
       getRecipe();
     }, [])
+    
   return (
     <div className='recipe-details'>
       {!recipe && (

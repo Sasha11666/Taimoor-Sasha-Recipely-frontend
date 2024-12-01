@@ -17,13 +17,11 @@ const Home = ({recipes, setDeleted, deleted}) => {
                         <h2>{recipe.name}</h2>
                         <p>Created by {recipe.firstName}</p>
                     </Link>
-                    
                 </div>
                
             ))}
         </div>)}
        {recipes && recipes.filter((recipe) => recipe.userId.toString() == localStorage.getItem("userId").replace(/"/g, '')).length == 0 && <div className='empty'>Looks like your recipe collection is still empty... time to spice things up and add something <b>scrumptious</b>!😋</div>}
-        
         </div>
     )
 }

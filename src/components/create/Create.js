@@ -19,7 +19,6 @@ const Create = ({deleted, setDeleted}) => {
         userId: localStorage.getItem("userId").replace(/"/g, ''),
         ...newRecipe,
       });
-      console.log(response.data);
       console.log('New recipe added!')
       setDeleted(!deleted);
       navigate('/');

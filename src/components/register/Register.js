@@ -3,12 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { useEffect, useState } from "react";
 import api from '../../api/axiosConfig';
-// import { useUserContext } from "../App";
 
-// import { useDispatch } from "react-redux";
 
 function Register() {
-//   const { setUser } = useUserContext();
   const [error, setError] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -16,7 +13,6 @@ function Register() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [disable, setDisable] = useState(false);
-//   const dispatch = useDispatch();
   let navigate = useNavigate();
 
 
@@ -37,7 +33,6 @@ function Register() {
         const response = await api.post("api/v1/register", {
           ...user,
         });
-        console.log(response.data);
         setDisable(false);
         navigate('/login');
       } catch(err){
@@ -46,7 +41,6 @@ function Register() {
 
   };
 
-  // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
   useEffect(() => {
     setError(null);
     localStorage.removeItem("user");
@@ -115,7 +109,7 @@ function Register() {
             </div>
             </div>
             <div className="link">
-                <Link to="/login">Already have an account? Sign in</Link>
+                <Link to="/login">Already have an account? Log in</Link>
             </div>
             
        </div>

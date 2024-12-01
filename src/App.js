@@ -21,7 +21,6 @@ function App() {
 
     try{
       const response = await api.get("api/v1/recipes");
-      console.log(response.data);
       setRecipes(response.data);
     } catch(err){
       console.log(err);
@@ -38,9 +37,6 @@ function App() {
       
       
       <Routes>
-        {/* <Route path="/" element={<Layout/>}>
-          <Route path="/" element={<Home recipes={recipes}/>}/>
-        </Route> */}
         <Route path="/login" element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />} />
         <Route path="/register" element={<Register />} />
         <Route

@@ -3,20 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useEffect, useState } from "react";
 import api from '../../api/axiosConfig';
-// import { useUserContext } from "../App";
 
-// import { useDispatch } from "react-redux";
 
 function Login({setLoggedIn, loggedIn}) {
-//   const { setUser } = useUserContext();
+
   const [error, setError] = useState(null);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(false);
-//   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-//  
+
 
   const handleLogin = async () => {
     if (!userName || !password) {
@@ -30,7 +27,6 @@ function Login({setLoggedIn, loggedIn}) {
         const response = await api.post("api/v1/login", {
           ...user,
         });
-        console.log(response.data);
         setDisable(false);
         if(response.status == 200) {
             localStorage.setItem("userId", JSON.stringify(response.data.id));
@@ -50,7 +46,6 @@ function Login({setLoggedIn, loggedIn}) {
 
   };
 
-  // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
   useEffect(() => {
     setError(null);
     localStorage.removeItem("user");
@@ -84,10 +79,10 @@ function Login({setLoggedIn, loggedIn}) {
             {error && <div className="error">{error}</div>}
             <div className="button-block">
               {disable ? (
-                <p style={{ color: "#000" }}>Signing in...</p>
+                <p style={{ color: "#000" }}>Logging in...</p>
               ) : (
                 <button onClick={handleLogin}>
-                  Sign in
+                  Log in
                 </button>
               )}
             </div>
