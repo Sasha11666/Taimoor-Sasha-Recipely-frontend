@@ -4,12 +4,12 @@ import  Navbar  from "../navbar/Navbar";
 
 
 
-
-const Home = ({recipes}) => {
+const Home = ({recipes, setDeleted, deleted}) => {
 
     return (
         <div>
-        <Navbar/>
+        <Navbar setDeleted={setDeleted} deleted={deleted}/>
+        <div className="greet-block">Hello {localStorage.getItem("userFirstName").replace(/"/g, '')}🙂</div>
         {recipes && (<div className="recipes">
             {recipes.filter((recipe) => recipe.userId.toString() == localStorage.getItem("userId").replace(/"/g, '')).map((recipe) => (
                 <div className="recipe-preview" key={recipe.id}>
@@ -22,6 +22,8 @@ const Home = ({recipes}) => {
                
             ))}
         </div>)}
+       {recipes && recipes.filter((recipe) => recipe.userId.toString() == localStorage.getItem("userId").replace(/"/g, '')).length == 0 && <div className='empty'>Looks like your recipe collection is still empty... time to spice things up and add something <b>scrumptious</b>!😋</div>}
+        
         </div>
     )
 }

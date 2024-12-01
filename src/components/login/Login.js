@@ -7,7 +7,7 @@ import api from '../../api/axiosConfig';
 
 // import { useDispatch } from "react-redux";
 
-function Login() {
+function Login({setLoggedIn, loggedIn}) {
 //   const { setUser } = useUserContext();
   const [error, setError] = useState(null);
   const [userName, setUserName] = useState("");
@@ -34,14 +34,18 @@ function Login() {
         setDisable(false);
         if(response.status == 200) {
             localStorage.setItem("userId", JSON.stringify(response.data.id));
-            // localStorage.setItem("userFirstName", JSON.stringify(response.data.name));
+            localStorage.setItem("userFirstName", JSON.stringify(response.data.firstName));
             navigate('/');
-        } else {
-            setError(response);
-        }
+            setLoggedIn(!loggedIn);
+        } 
         
       } catch(err){
         console.log(err);
+        if(err.status == 404) {
+          setError("Invalid password or username, try again!");
+          setDisable(false);
+        }
+        
       }
 
   };

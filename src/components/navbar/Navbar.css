@@ -5,6 +5,7 @@
     max-width: 600px;
     margin: 0 auto;
     border-bottom: 1px solid #a8a4a4;
+    margin-bottom: 32px;
   }
   
   .navbar .links {
@@ -18,4 +19,18 @@
   }
   .navbar a:hover {
     color: #258e7e;
+  }
+
+  .button {
+    background: #258e7e;
+    margin-left: 16px;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+  }
+
+  .button:hover {
+    background: #176e61;
   }

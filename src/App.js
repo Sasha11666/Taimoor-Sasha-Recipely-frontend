@@ -15,6 +15,7 @@ function App() {
 
   const [recipes, setRecipes] = useState();
   const [deleted, setDeleted] = useState();
+  const [loggedIn, setLoggedIn] = useState();
 
   const getRecipes = async() => {
 
@@ -30,7 +31,7 @@ function App() {
 
   useEffect(() => {
     getRecipes();
-  }, [deleted])
+  }, [deleted, loggedIn])
 
   return (
     <div className="App">
@@ -40,14 +41,14 @@ function App() {
         {/* <Route path="/" element={<Layout/>}>
           <Route path="/" element={<Home recipes={recipes}/>}/>
         </Route> */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />} />
         <Route path="/register" element={<Register />} />
         <Route
         element={
-          <ProtectedRoute isAllowed={Boolean(localStorage.getItem("user"))} />
+          <ProtectedRoute isAllowed={Boolean(localStorage.getItem("userId"))} />
          }
         >
-          <Route path="/" element={<Home recipes={recipes}/>}/>
+          <Route path="/" element={<Home setDeleted={setDeleted} deleted={deleted} recipes={recipes}/>}/>
           <Route path="/create" element={<Create deleted={deleted} setDeleted={setDeleted}/>}/>
           <Route path="/recipes/:id" element={<Recipe deleted={deleted} setDeleted={setDeleted}/>}/>
       </Route>
